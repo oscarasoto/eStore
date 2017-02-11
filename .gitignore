@@ -1,0 +1,33 @@
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+.DS_Store
+.gitignore
+out/
+src/.DS_Store
+src/main/.DS_Store
+src/main/java/us/oscarsoto/estore/us/
+src/main/resources/
+src/main/webapp/.DS_Store
+src/test/
