@@ -3,6 +3,7 @@ package com.estore.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.estore.dao.ProductDao;
@@ -20,29 +21,31 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-   @Autowired
-   private ProductDao productDao;
+    @Autowired
+    ProductDao productDao;
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public String home() {
         return "home";
     }
 
-    @RequestMapping("/productList")
+    @GetMapping("/products")
     public String getProducts(Model model){
-        List<Product> products = productDao.getAllProducts();
-        model.addAttribute("products", products);
-
-        return "productList";
+        model.addAttribute("products", productDao.findAll());
+        return "products/productList";
     }
 
-    @RequestMapping("/productList/viewProduct/{productId}")
-    public String viewProduct(@PathVariable String productId, Model model)  throws IOException{
+    @GetMapping("products/{productId}")
+    public String viewProduct(@PathVariable Long productId, Model model){
 
-        Product product = productDao.getProductById(productId);
-        model.addAttribute(product);
+        Product existingProduct = productDao.findOne(productId);
+        model.addAttribute("product", existingProduct);
 
-        return "viewProduct";
+        return "products/viewProduct";
     }
 
+    @GetMapping("/admin")
+    public String adminPage(){
+        return "products/admin";
+    }
 }

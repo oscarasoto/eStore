@@ -1,6 +1,7 @@
 package com.estore.dao;
 
 import com.estore.model.Product;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
@@ -9,14 +10,6 @@ import java.util.List;
  *         There is no reasonable excuse for doing anything less than your best.
  *         - Martin, Robert C.
  */
-public interface ProductDao {
-
-    void addProduct(Product product);
-
-    Product getProductById(String id);
-
-    List<Product> getAllProducts();
-
-    void deleteProduct(String id);
+public interface ProductDao extends CrudRepository<Product, Long>{
 
 }
