@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="fragments/header :: header(${'eStore - Products'})"/>
+<body>
+<nav th:include="fragments/navbar :: navbar"/>
+<div class="container-wrapper">
+    <div class="container">
+        <div class="page-header">
+            <h1>Product Detail</h1>
+
+            <p class="lead">Here is the detail information of the product!</p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="#" alt="image" style="width: 100%; height: 300px" />
+                </div>
+
+                <div class="col-md-5">
+                    <h3 th:text="${product.productName}"></h3>
+                    <p th:text="${product.productDescription}"></p>
+                    <p>
+                        <strong>Manufacturer</strong> : <span th:text="${product.productManufacturer}"></span>
+                    </p>
+                    <p>
+                        <strong>Category</strong> : <span th:text="${product.productCategory}"></span>
+                    </p>
+                    <p>
+                        <strong>Condition</strong> : <span th:text="${product.productCondition}"></span>
+                    </p>
+                    <h4> <span th:text="${product.productPrice}"></span> USD</h4>
+                </div>
+            </div>
+        </div>
+
+        <footer th:include="fragments/footer :: footer"/>
+
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="fragments/header :: header(${'eStore - Admin'})"/>
+<body>
+<nav th:include="fragments/navbar :: navbar"/>
+
+
+<div class="container-wrapper">
+    <div class="container">
+        <div class="page-header">
+            <h1>Administrator Page</h1>
+
+            <p class="lead">This is the administrator page!</p>
+        </div>
+        <h3>
+            <a th:href="@{'admin/productInventory'}">Product Inventory</a>
+        </h3>
+
+        <p>Here you can view, check and modify the product inventory! </p>
+
+        <footer th:include="fragments/footer :: footer"/>
+
+    </div>
+</div>
+
+
+</body>
+</html>
+
