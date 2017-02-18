@@ -3,14 +3,17 @@ package com.estore.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 import com.estore.dao.ProductDao;
 import com.estore.model.Product;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.nio.file.Paths;
+
 
 /**
  * @author oscarsoto on 2/11/17.
@@ -48,4 +51,27 @@ public class HomeController {
     public String adminPage(){
         return "products/admin";
     }
+
+    @GetMapping("/admin/productInventory")
+    public String productInventory(Model model){
+        model.addAttribute("products", productDao.findAll());
+
+        return "products/productInventory";
+    }
+
+    @GetMapping("/admin/productInventory/addProduct")
+    public String addProduct(Model model){
+        model.addAttribute("product", new Product());
+        return "products/addProduct";
+    }
+
+    @PostMapping("/admin/productInventory/addProduct")
+    public String addProductPost(@Valid Product product){
+
+        productDao.save(product);
+
+        return "redirect:/admin/productInventory";
+    }
+
+//    /admin/productInventory/products/addProduct
 }
