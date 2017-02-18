@@ -27,7 +27,9 @@ nbdist/
 out/
 src/.DS_Store
 src/main/.DS_Store
-src/main/java/us/oscarsoto/estore/us/
-src/main/resources/
 src/main/webapp/.DS_Store
 src/test/
+mvnw
+mvnw.cmd
+
+/src/main/resources/application.properties
