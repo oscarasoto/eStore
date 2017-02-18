@@ -73,5 +73,12 @@ public class HomeController {
         return "redirect:/admin/productInventory";
     }
 
-//    /admin/productInventory/products/addProduct
+    @GetMapping("/admin/productInventory/deleteProduct/{productId}")
+    public String deleteProduct(@PathVariable Long productId){
+
+        Product existingProduct = productDao.findOne(productId);
+        productDao.delete(existingProduct);
+
+        return "redirect:/admin/productInventory";
+    }
 }

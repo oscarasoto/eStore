@@ -31,9 +31,14 @@
                 <td th:text="${product.productCategory}"></td>
                 <td th:text="${product.productCondition}"></td>
                 <td th:text="${product.productPrice}"> USD</td>
-                <td><a th:href="@{'/products/'+${product.productId}}">
-                    <span class="glyphicon glyphicon-info-sign"></span>
-                </a></td>
+                <td>
+                    <a th:href="@{'/products/'+${product.productId}}">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                    </a>
+                    <a th:href="@{'/admin/productInventory/deleteProduct/'+${product.productId}}">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </td>
             </tr>
         </table>
 
