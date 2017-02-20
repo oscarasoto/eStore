@@ -12,11 +12,12 @@
         </div>
 
 
-        <form class="form-horizontal" method="POST" th:action="@{'/admin/productInventory/addProduct'}" th:object="${product}">
+        <form class="form-horizontal" th:action="@{'/admin/productInventory/addProduct'}" method="POST" enctype="multipart/form-data" th:object="${product}">
             <div class="form-group">
                 <label for="name" class="col-xs-2">Name</label>
                 <div class="col-xs-8">
                     <input class="form-control" id="name" th:field="*{productName}" />
+                    <p class="alert alert-danger" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" />
                 </div>
             </div>
             <div class="form-group">
@@ -63,6 +64,12 @@
                 <label for="manufacturer" class="col-xs-2">Manufacturer</label>
                 <div class="col-xs-8">
                     <input class="form-control" id="manufacturer" th:field="*{productManufacturer}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="file" class="col-xs-2">Upload Picture</label>
+                <div class="col-xs-8">
+                    <input class="form-control" id="file" name="file" type="file" />
                 </div>
             </div>
             <div class="form-group">

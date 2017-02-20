@@ -1,5 +1,8 @@
 package com.estore.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
 
 /**
@@ -16,6 +19,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productId;
 
+    @NotBlank(message = "Please enter a product name")
     private String productName;
     private String productCategory;
     private String productDescription;
@@ -24,6 +28,8 @@ public class Product {
     private String productStatus;
     private int unitInStock;
     private String productManufacturer;
+
+    private String productImage;
 
     public Long getProductId() {
         return productId;
@@ -91,6 +97,14 @@ public class Product {
 
     public String getProductManufacturer() {
         return productManufacturer;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     public void setProductManufacturer(String productManufacturer) {
