@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:include="fragments/header :: header(${'eStore - Add Product'})"/>
+<head th:include="fragments/header :: header(${'eStore - Edit Product'})"/>
 <body>
 <nav th:include="fragments/navbar :: navbar"/>
 <div class="container-wrapper">
     <div class="container">
         <div class="page-header">
-            <h1>Add Product</h1>
+            <h1>Edit Product</h1>
 
-            <p class="lead">Fill the below information to add a product</p>
+            <p class="lead">Please update the product information here:</p>
         </div>
 
 
-        <form class="form-horizontal" th:action="@{'/admin/productInventory/addProduct'}" method="POST" enctype="multipart/form-data" th:object="${product}">
+        <form class="form-horizontal" th:action="@{'/admin/productInventory/editProduct/'+${productId}}" method="POST" enctype="multipart/form-data" th:object="${product}">
             <div class="form-group">
                 <label for="name" class="col-xs-2">Name</label>
                 <div class="col-xs-8">

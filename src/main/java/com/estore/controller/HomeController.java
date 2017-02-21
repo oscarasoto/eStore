@@ -72,7 +72,7 @@ public class HomeController {
     }
 
     @PostMapping("/admin/productInventory/addProduct")
-    public String addProductPost(@Valid Product product, Errors validation, @RequestParam(name = "file") MultipartFile uploadedFile, Model model){
+    public String addProduct(@Valid Product product, Errors validation, @RequestParam(name = "file") MultipartFile uploadedFile, Model model){
 
 
         productDao.save(product);
@@ -91,7 +91,6 @@ public class HomeController {
         }
 
         productDao.save(product);
-        System.out.println(product.getProductImage());
 
         return "redirect:/admin/productInventory";
     }
@@ -113,4 +112,43 @@ public class HomeController {
 
         return "redirect:/admin/productInventory";
     }
+
+
+    @GetMapping("/admin/productInventory/editProduct/{productId}")
+    public String editProduct(@PathVariable Long productId, Model model){
+
+        model.addAttribute("product", productDao.findOne(productId));
+        return "products/editProduct";
+    }
+
+    @PostMapping("/admin/productInventory/editProduct/{productId}")
+    public String editProduct(@PathVariable Long productId, @Valid Product editedProduct, Errors validation, Model model){
+
+        if(validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("product", editedProduct);
+            return "products/editProduct";
+        }
+
+        Product existingProduct = productDao.findOne(productId);
+
+        existingProduct.setProductName(editedProduct.getProductName());
+        existingProduct.setProductCategory(editedProduct.getProductCategory());
+        existingProduct.setProductDescription(editedProduct.getProductDescription());
+        existingProduct.setProductPrice(editedProduct.getProductPrice());
+        existingProduct.setProductCondition(editedProduct.getProductCondition());
+        existingProduct.setProductStatus(editedProduct.getProductStatus());
+        existingProduct.setUnitInStock(editedProduct.getUnitInStock());
+        existingProduct.setProductManufacturer(editedProduct.getProductManufacturer());
+
+
+
+        existingProduct.setProductImage(editedProduct.getProductImage());
+
+        productDao.save(existingProduct);
+
+
+        return "redirect:/admin/productInventory";
+    }
+
 }

@@ -38,6 +38,9 @@
                     <a th:href="@{'/admin/productInventory/deleteProduct/'+${product.productId}}">
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
+                    <a th:href="@{'/admin/productInventory/editProduct/'+${product.productId}}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
                 </td>
             </tr>
         </table>
