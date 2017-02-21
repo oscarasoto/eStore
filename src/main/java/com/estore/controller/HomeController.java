@@ -81,14 +81,7 @@ public class HomeController {
         String filepath = Paths.get(uploadPath, filename).toString();
         File destinationFile = new File(filepath);
 
-        try {
-            uploadedFile.transferTo(destinationFile);
-            product.setProductImage(filename);
-            model.addAttribute("message", "File successfully uploaded!");
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("message", "Oops! Something went wrong! " + e);
-        }
+        uploadFile(uploadedFile, model, product, filename, destinationFile);
 
         productDao.save(product);
 
@@ -122,7 +115,7 @@ public class HomeController {
     }
 
     @PostMapping("/admin/productInventory/editProduct/{productId}")
-    public String editProduct(@PathVariable Long productId, @Valid Product editedProduct, Errors validation, Model model){
+    public String editProduct(@PathVariable Long productId, @Valid Product editedProduct, Errors validation, @RequestParam(name = "file") MultipartFile uploadedFile, Model model){
 
         if(validation.hasErrors()){
             model.addAttribute("errors", validation);
@@ -132,6 +125,7 @@ public class HomeController {
 
         Product existingProduct = productDao.findOne(productId);
 
+        // Updates product information
         existingProduct.setProductName(editedProduct.getProductName());
         existingProduct.setProductCategory(editedProduct.getProductCategory());
         existingProduct.setProductDescription(editedProduct.getProductDescription());
@@ -141,14 +135,37 @@ public class HomeController {
         existingProduct.setUnitInStock(editedProduct.getUnitInStock());
         existingProduct.setProductManufacturer(editedProduct.getProductManufacturer());
 
+        if (!uploadedFile.isEmpty()){
 
+            // Delete current image from uploads folder
+            String filename = existingProduct.getProductImage();
+            String filepath = Paths.get(uploadPath, filename).toString();
+            File destinationFile = new File(filepath);
+            destinationFile.delete();
 
-        existingProduct.setProductImage(editedProduct.getProductImage());
+            // Upload new image to uploads folder
+            filename = "product"+editedProduct.getProductId()+uploadedFile.getOriginalFilename();
+            filepath = Paths.get(uploadPath, filename).toString();
+            destinationFile = new File(filepath);
+            uploadFile(uploadedFile, model, existingProduct, filename, destinationFile);
+
+        }
 
         productDao.save(existingProduct);
 
 
         return "redirect:/admin/productInventory";
+    }
+
+    private void uploadFile(@RequestParam(name = "file") MultipartFile uploadedFile, Model model, Product existingProduct, String filename, File destinationFile) {
+        try {
+            uploadedFile.transferTo(destinationFile);
+            existingProduct.setProductImage(filename);
+            model.addAttribute("message", "File successfully uploaded!");
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("message", "Oops! Something went wrong! " + e);
+        }
     }
 
 }
