@@ -19,7 +19,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productId;
 
-    @NotBlank(message = "Please enter a product name")
+    @NotBlank(message = "The product name must not be empty.")
     private String productName;
     private String productCategory;
     private String productDescription;
