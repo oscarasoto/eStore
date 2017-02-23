@@ -1,5 +1,6 @@
-package com.estore.security;
+package com.estore.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  *         There is no reasonable excuse for doing anything less than your best.
  *         - Martin, Robert C.
  */
+@Controller
 public class LoginController {
 
     @GetMapping("/login")

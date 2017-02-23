@@ -1,9 +1,10 @@
-package com.estore.security;
+package com.estore.controller;
 
 import com.estore.dao.ProductDao;
 import com.estore.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import java.nio.file.Paths;
  *         There is no reasonable excuse for doing anything less than your best.
  *         - Martin, Robert C.
  */
+@Controller
 public class AdminController {
 
     @Value("${file-upload-path}")

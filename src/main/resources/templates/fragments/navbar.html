@@ -29,7 +29,19 @@
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                         <ul class="nav navbar-nav pull-right">
-                            <li id="admin"><a href="/admin">Admin</a></li>
+                            <li><a href="/admin">Admin</a></li>
+                            <li>
+                                <a href="javascript: submitForm()">Logout</a>
+                                <form name="myLogoutForm" th:action="@{/logout}" method="post">
+                                    <input type="hidden" name="logout" id="logout"/>
+                                </form>
+                                <script type="text/javascript">
+                                    function submitForm()
+                                    {
+                                        document.myLogoutForm.submit();
+                                    }
+                                </script>
+                            </li>
                         </ul>
                     </div>
                 </div>
