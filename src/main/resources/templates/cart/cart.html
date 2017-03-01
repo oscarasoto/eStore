@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="fragments/header :: header(${'eStore - Product Inventory'})"/>
+<body>
+<nav th:include="fragments/navbar :: navbar"/>
+
+
+<div class="container-wrapper">
+    <div class="container">
+        <section>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Cart</h1>
+                    <p>All the selected products in your shopping cart</p>
+
+                </div>
+
+            </div>
+        </section>
+        <section class="container">
+            <div>
+                <a class="btn btn-danger pull-left"><span class="glyphicon glyphicon-remove-sign"></span>Clear Cart</a>
+            </div>
+
+            <table class="table table-hover">
+               <tr>
+                   <th>Product</th>
+                   <th>Unit Price</th>
+                   <th>Quantity</th>
+                   <th>Price</th>
+                   <th>Action</th>
+               </tr>
+                <tr>
+                    <td>productName</td>
+                    <td>productPrice</td>
+                    <td>quantity</td>
+                    <td>totalPrice</td>
+                    <td>remove button</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>GrandTotal</th>
+                    <th>grandTotal</th>
+                    <th></th>
+                </tr>
+
+            </table>
+
+            <a href="/products/">Continue Shopping</a>
+        </section>
+
+
+        <footer th:include="fragments/footer :: footer"/>
+
+    </div>
+</div>
+
+
+</body>
+</html>
+
