@@ -33,6 +33,9 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/contact")
+    public String contact(){ return "contact"; }
+
     @GetMapping("/products")
     public String getProducts(Model model){
         model.addAttribute("products", productDao.findAll());

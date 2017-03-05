@@ -1,8 +1,10 @@
 package com.estore.security;
 
+import com.estore.model.Product;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -16,6 +18,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "user")
+    private List<Product> products;
 
     @NotBlank(message = "Please enter a username")
     @Column(nullable = false, unique = true)
@@ -38,8 +43,6 @@ public class User {
         this.setUsername(username);
         this.setPassword(password);
     }
-
-
 
     public Long getId() {
         return id;

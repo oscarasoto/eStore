@@ -1,9 +1,10 @@
 package com.estore.model;
 
+import com.estore.security.User;
 import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author oscarsoto on 2/11/17.
@@ -13,11 +14,16 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "products")
-public class Product {
+public class Product implements Serializable{
+
+    private static final long serialVersionUID = -3532377236419382983L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long productId;
+
+    @ManyToOne
+    private User user;
 
     @NotBlank(message = "The product name must not be empty.")
     private String productName;
@@ -30,6 +36,14 @@ public class Product {
     private String productManufacturer;
 
     private String productImage;
+
+    public void setUser(User user){
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
 
     public Long getProductId() {
         return productId;
