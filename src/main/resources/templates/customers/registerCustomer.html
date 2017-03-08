@@ -15,46 +15,49 @@
 
         <div class="row">
             <div class="col-xs-offset-2 col-xs-12">
-                <form class="form-horizontal" th:action="@{'/register'}" method="post" th:object="${customer}">
+                <form class="form-horizontal" th:action="@{'/register'}" method="post">
 
                     <h3>Basic Info</h3>
 
                     <div class="form-group">
                         <label for="name" class="col-xs-2">Name</label>
+
                         <div class="col-xs-8">
-                            <input th:field="*{customerName}" id="name" class="form-Control"/>
-                            <p th:errors="*{customerName}" class="alert alert-danger"/>
+                            <input th:field="*{customer.customerName}" id="name" class="form-Control"/>
+                            <p th:errors="*{customer.customerName}" class="alert alert-danger"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="email" class="col-xs-2">Email</label>
+                        <span style="color: #ff0000" th:text="${emailMsg}"></span>
                         <div class="col-xs-8">
-                            <input th:field="*{customerEmail}" id="email" class="form-Control"/>
-                            <p th:errors="*{customerEmail}" class="alert alert-danger"/>
+                            <input th:field="*{customer.customerEmail}" id="email" class="form-Control"/>
+                            <p th:errors="*{customer.customerEmail}" class="alert alert-danger"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="phone" class="col-xs-2">Phone</label>
                         <div class="col-xs-8">
-                            <input th:field="*{customerPhone}" id="phone" class="form-Control"/>
+                            <input th:field="*{customer.customerPhone}" id="phone" class="form-Control"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="username" class="col-xs-2">Username</label>
+                        <span style="color: #ff0000" th:text="${usernameMsg}"></span>
                         <div class="col-xs-8">
-                            <input th:field="*{username}" id="username" class="form-Control"/>
-                            <p th:errors="*{username}" class="alert alert-danger"/>
+                            <input th:field="*{customer.username}" id="username" class="form-Control"/>
+                            <p th:errors="*{customer.username}" class="alert alert-danger"/>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="password" class="col-xs-2">Password</label>
                         <div class="col-xs-8">
-                            <input th:field="*{password}" id="password" class="form-Control"/>
-                            <p th:errors="*{password}" class="alert alert-danger"/>
+                            <input th:field="*{customer.password}" id="password"  type="password" class="form-Control"/>
+                            <p th:errors="*{customer.password}" class="alert alert-danger"/>
                         </div>
                     </div>
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:include="fragments/header :: header(${'eStore - Product Inventory'})"/>
+<body>
+<nav th:include="fragments/navbar :: navbar"/>
+
+
+<div class="container-wrapper">
+    <div class="container">
+        <section>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Customer registered successfully</h1>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="container">
+            <p>
+                <a th:href="/products/" class="btn btn-primary">Products</a>
+            </p>
+
+        </section>
+
+        <footer th:include="fragments/footer :: footer"/>
+
+    </div>
+</div>
+
+
+</body>
+</html>
+

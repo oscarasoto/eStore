@@ -15,7 +15,7 @@ public class BillingAddress implements Serializable {
 
     @Id
     @GeneratedValue
-    private int billingAddressId;
+    private Long billingAddressId;
     private String streetName;
     private String apartmentNumber;
     private String city;
@@ -26,11 +26,11 @@ public class BillingAddress implements Serializable {
     @OneToOne
     private Customer customer;
 
-    public int getBillingAddressId() {
+    public long getBillingAddressId() {
         return billingAddressId;
     }
 
-    public void setBillingAddressId(int billingAddressId) {
+    public void setBillingAddressId(long billingAddressId) {
         this.billingAddressId = billingAddressId;
     }
 
@@ -92,7 +92,7 @@ public class BillingAddress implements Serializable {
 
     @Override
     public String toString() {
-        return "BillingAddress{" +
+        return "BillingAddressDao{" +
                 "streetName='" + streetName + '\'' +
                 ", apartmentNumber='" + apartmentNumber + '\'' +
                 ", city='" + city + '\'' +

@@ -1,19 +1,12 @@
 package com.estore.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import com.estore.dao.ProductDao;
 import com.estore.model.Product;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
+import com.estore.security.BaseController;
 
 
 /**
@@ -23,13 +16,19 @@ import java.nio.file.Paths;
  */
 
 @Controller
-public class HomeController {
+public class HomeController extends BaseController {
 
     @Autowired
     ProductDao productDao;
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) {
+
+        if(isLoggedIn()){
+            String userName = loggedInUser().getUsername();
+            model.addAttribute("showAdminMenu", userName.equals("admin"));
+            model.addAttribute("showCustomerMenu", !userName.equals("admin"));
+        }
         return "home";
     }
 
