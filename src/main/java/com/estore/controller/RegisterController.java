@@ -6,6 +6,7 @@ import com.estore.dao.ShippingAddressDao;
 import com.estore.model.BillingAddress;
 import com.estore.model.Customer;
 import com.estore.model.ShippingAddress;
+import jdk.nashorn.internal.objects.NativeRegExp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,10 +60,8 @@ public class RegisterController {
             model.addAttribute("customer", customer);
             model.addAttribute("billingAddress", billingAddress);
             model.addAttribute("shippingAddress", shippingAddress);
+            return "/register";
         }
-
-        model.addAttribute("billingAddress", billingAddress);
-        model.addAttribute("shippingAddress", shippingAddress);
 
         List<Customer> customerList = (List<Customer>) customerDao.findAll();
 
@@ -80,11 +79,26 @@ public class RegisterController {
             }
         }
 
+        billingAddressDao.save(billingAddress);
+        shippingAddressDao.save(shippingAddress);
+        customerDao.save(customer);
+
+        customer.setBillingAddress(billingAddress);
+        customer.setShippingAddress(shippingAddress);
         customer.setEnabled(true);
+
+
+
+
+        billingAddress.setCustomer(customer);
+        shippingAddress.setCustomer(customer);
+
 
         billingAddressDao.save(billingAddress);
         shippingAddressDao.save(shippingAddress);
         customerDao.save(customer);
+
+
 
         return "customers/registerCustomerSuccess";
 

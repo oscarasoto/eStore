@@ -14,8 +14,9 @@ public class BillingAddress implements Serializable {
     private static final long serialVersionUID = -6091579459463730482L;
 
     @Id
-    @GeneratedValue
-    private Long billingAddressId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long billingAddressId;
+
     private String streetName;
     private String apartmentNumber;
     private String city;

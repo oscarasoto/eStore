@@ -15,8 +15,9 @@ public class ShippingAddress implements Serializable {
     private static final long serialVersionUID = 989191150380037359L;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long shippingAddressId;
+
     private String streetName;
     private String apartmentNumber;
     private String city;

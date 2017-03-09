@@ -30,9 +30,9 @@
 
                     <div class="form-group">
                         <label for="email" class="col-xs-2">Email</label>
-                        <span style="color: #ff0000" th:text="${emailMsg}"></span>
                         <div class="col-xs-8">
                             <input th:field="*{customer.customerEmail}" id="email" class="form-Control"/>
+                            <p style="color: #ff0000" th:text="${emailMsg}"></p>
                             <p th:errors="*{customer.customerEmail}" class="alert alert-danger"/>
                         </div>
                     </div>
@@ -46,9 +46,9 @@
 
                     <div class="form-group">
                         <label for="username" class="col-xs-2">Username</label>
-                        <span style="color: #ff0000" th:text="${usernameMsg}"></span>
                         <div class="col-xs-8">
                             <input th:field="*{customer.username}" id="username" class="form-Control"/>
+                            <p style="color: #ff0000" th:text="${usernameMsg}"></p>
                             <p th:errors="*{customer.username}" class="alert alert-danger"/>
                         </div>
                     </div>
