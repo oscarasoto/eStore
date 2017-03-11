@@ -17,9 +17,12 @@ import javax.servlet.http.HttpServletRequest;
  *         There is no reasonable excuse for doing anything less than your best.
  *         - Martin, Robert C.
  */
-//@Controller
+@Controller
 //@RequestMapping("/rest/cart")
 public class CartController {
+
+    @GetMapping("/customer/cart")
+    public String cart(){ return "cart/cart"; }
 
 //    @Autowired
 //    private CartDao cartDao;

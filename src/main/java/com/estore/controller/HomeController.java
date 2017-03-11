@@ -8,6 +8,9 @@ import com.estore.dao.ProductDao;
 import com.estore.model.Product;
 import com.estore.security.BaseController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * @author oscarsoto on 2/11/17.
@@ -50,5 +53,37 @@ public class HomeController extends BaseController {
         return "products/viewProduct";
     }
 
+    @GetMapping("products/accessories")
+    public String getAccessories(Model model){
+        List<Product> allProducts = (List<Product>) productDao.findAll();
+        List<Product> allAccessories = getProductsByCategory(allProducts, "Accessory");
+        model.addAttribute("products", allAccessories);
+        return "products/productList";
+    }
 
+    @GetMapping("products/instruments")
+    public String getInstruments(Model model){
+        List<Product> allProducts = (List<Product>) productDao.findAll();
+        List<Product> allInstruments = getProductsByCategory(allProducts, "Instrument");
+        model.addAttribute("products", allInstruments);
+        return "products/productList";
+    }
+
+    @GetMapping("products/records")
+    public String getRecords(Model model){
+        List<Product> allProducts = (List<Product>) productDao.findAll();
+        List<Product> allRecords = getProductsByCategory(allProducts, "Record");
+        model.addAttribute("products", allRecords);
+        return "products/productList";
+    }
+
+    private List<Product> getProductsByCategory(List<Product> allProducts, String Category) {
+        List<Product> productsByCategoy = new ArrayList<Product>();
+        for(Product product : allProducts){
+            if (Category.equalsIgnoreCase(product.getProductCategory())){
+                productsByCategoy.add(product);
+            }
+        }
+        return productsByCategoy;
+    }
 }
